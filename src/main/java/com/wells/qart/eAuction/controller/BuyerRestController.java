@@ -34,6 +34,7 @@ public class BuyerRestController {
 	public ResponseEntity<Boolean> updateBid(@PathVariable Long productId,@PathVariable String buyerEmailld,
 											 @PathVariable Double newBidAmount) {
 
-		return ResponseEntity.ok(false);
+		boolean ret = bidService.updateBid(productId,buyerEmailld,newBidAmount);
+		return ResponseEntity.ok(ret);
 	}
 }

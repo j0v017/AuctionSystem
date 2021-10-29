@@ -5,6 +5,7 @@ import com.wells.qart.eAuction.entity.Bid;
 import com.wells.qart.eAuction.entity.Product;
 import com.wells.qart.eAuction.exceptions.CannotDeleteProductException;
 import com.wells.qart.eAuction.exceptions.DuplicateBidException;
+import com.wells.qart.eAuction.exceptions.InvalidDataException;
 import com.wells.qart.eAuction.exceptions.ProductNotFoundException;
 import com.wells.qart.eAuction.repository.BidRepository;
 import com.wells.qart.eAuction.repository.ProductRepository;
@@ -64,6 +65,18 @@ public class BidServiceImpl implements BidService {
 	@Override
 	public List<Bid> getAllBidsOnProductById(Long productId) {	
 		return bidRepository.findByProductIdOrderByBidAmountDesc(productId);
+	}
+
+	@Override
+	public boolean updateBid(Long productId, String buyerEmailld,Double newBidAmount){
+		List<Bid> bids = bidRepository.findByProductIdAndBuyerEmail(productId,buyerEmailld);
+		if(bids.isEmpty()){
+			throw new InvalidDataException("No Bids for given email nd product id");
+		}
+		Bid bid = bids.get(0);
+		bid.setBidAmount(newBidAmount);
+		bidRepository.save(bid);
+		return true;
 	}
 	
 	
