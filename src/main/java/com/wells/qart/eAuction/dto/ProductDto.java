@@ -16,7 +16,7 @@ public class ProductDto {
     private Long productId;
     @NotNull
     @Length(min = 5, max = 30)
-    private Long productName;
+    private String productName;
     private BigDecimal startingPrice;
     private String shortDescription;
     private String detailedDescription;
@@ -32,7 +32,7 @@ public class ProductDto {
 
     public ProductDto(){}
 
-    public ProductDto(Long productId, Long productName, BigDecimal startingPrice, String shortDescription, String detailedDescription, LocalDate bidEndDate, String category) {
+    public ProductDto(Long productId, String productName, BigDecimal startingPrice, String shortDescription, String detailedDescription, LocalDate bidEndDate, String category) {
         this.productId = productId;
         this.productName = productName;
         this.startingPrice = startingPrice;
@@ -50,11 +50,11 @@ public class ProductDto {
         this.productId = productId;
     }
 
-    public Long getProductName() {
+    public String getProductName() {
         return productName;
     }
 
-    public void setProductName(Long productName) {
+    public void setProductName(String productName) {
         this.productName = productName;
     }
 
