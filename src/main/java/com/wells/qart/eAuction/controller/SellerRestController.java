@@ -25,7 +25,7 @@ public class SellerRestController {
 	ProductService productService;
 
 
-	//@Autowired
+	@Autowired
 	BidService bidService;
 
 	@PostMapping("/add-product")
