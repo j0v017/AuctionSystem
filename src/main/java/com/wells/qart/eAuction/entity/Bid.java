@@ -21,7 +21,7 @@ public class Bid {
 	private Double bidAmount;
 	private Long productId;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	@JoinColumn(name="fk_buyer_id",referencedColumnName="buyerId")
 	private Buyer buyer;
 	

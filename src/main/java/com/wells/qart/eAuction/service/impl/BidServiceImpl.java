@@ -41,7 +41,7 @@ public class BidServiceImpl implements BidService {
 				throw new DuplicateBidException("Email "+bidEmail+" has an active bid for Product Id "+productId+".Cannot place bid.");
 			}
 		}
-		if (product.isEmpty()) {
+		if (!product.isPresent()) {
 			throw new ProductNotFoundException("Product ID "+bidDto.getProductId()+" is not found");
 		} else {
 			LocalDate bidEndDate = product.get().getBidEndDate();
@@ -53,6 +53,7 @@ public class BidServiceImpl implements BidService {
 			}		
 			Bid bid = new Bid();
 			BeanUtils.copyProperties(bidDto, bid);
+			bid.getBuyer().setBuyerId(null);
 			Bid bidSaved = bidRepository.save(bid);
 			
 			bidDto.setId(bidSaved.getBidId());
