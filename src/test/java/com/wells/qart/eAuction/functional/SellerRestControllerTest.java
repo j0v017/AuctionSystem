@@ -1,49 +1,41 @@
-//package com.wells.qart.eAuction.functional;
-//
-//import static com.wells.qart.eAuction.testutils.TestUtils.businessTestFile;
-//import static com.wells.qart.eAuction.testutils.TestUtils.currentTest;
-//import static com.wells.qart.eAuction.testutils.TestUtils.testReport;
-//import static com.wells.qart.eAuction.testutils.TestUtils.yakshaAssert;
-//import static org.mockito.Mockito.when;
-//
-//import java.util.List;
-//
-//import com.wells.qart.eAuction.dto.SellerDto;
-//import com.wells.qart.eAuction.service.SellerService;
-//import org.junit.jupiter.api.AfterAll;
-////import org.junit.Test;
+package com.wells.qart.eAuction.functional;
+import static com.wells.qart.eAuction.testutils.TestUtils.businessTestFile;
+import static com.wells.qart.eAuction.testutils.TestUtils.currentTest;
+import static com.wells.qart.eAuction.testutils.TestUtils.testReport;
+import static com.wells.qart.eAuction.testutils.TestUtils.yakshaAssert;
+import static org.mockito.Mockito.when;
+import java.util.List;
+import com.wells.qart.eAuction.dto.SellerDto;
+import com.wells.qart.eAuction.service.SellerService;
+import org.junit.jupiter.api.AfterAll;
+//import org.junit.Test;
 ////import org.junit.jupiter.api.BeforeAll;
-//import org.junit.jupiter.api.Test;
-////import org.junit.runner.RunWith;
-//import org.mockito.invocation.InvocationOnMock;
-//import org.mockito.stubbing.Answer;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-//import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-//import org.springframework.boot.test.mock.mockito.MockBean;
-//import org.springframework.http.MediaType;
-//import org.springframework.test.web.servlet.MockMvc;
-//import org.springframework.test.web.servlet.MvcResult;
-//import org.springframework.test.web.servlet.RequestBuilder;
-//import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-//
-//import com.wells.qart.eAuction.controller.SellerRestController;
-//import com.wells.qart.eAuction.testutils.MasterData;
-//
-//@WebMvcTest(SellerRestController.class)
-//@AutoConfigureMockMvc
-//public class SellerRestControllerTest {
-//	@Autowired
-//	private MockMvc mockMvc;
-//
-//	@MockBean
-//	private SellerService sellerService;
-//
-//	@AfterAll
-//	public static void afterAll() {
-//		testReport();
-//	}
-//
+import org.junit.jupiter.api.Test;
+//import org.junit.runner.RunWith;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import com.wells.qart.eAuction.controller.SellerRestController;
+import com.wells.qart.eAuction.testutils.MasterData;
+@WebMvcTest(SellerRestController.class)
+@AutoConfigureMockMvc
+public class SellerRestControllerTest {
+@Autowired
+private MockMvc mockMvc;
+@MockBean
+private SellerService sellerService;
+@AfterAll
+public static void afterAll() {
+	testReport();
+}
 //	@Test
 //	public void testRegisterUser() throws Exception {
 //		SellerDto sellerDto = MasterData.getUserDto();
@@ -205,4 +197,4 @@
 //	}
 //
 //
-//}
+}

@@ -1,29 +1,21 @@
-//package com.wells.qart.eAuction.testutils;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//import com.fasterxml.jackson.databind.ObjectMapper;
-////import com.iiht.training.datingapp.dto.*;
-//import com.wells.qart.eAuction.dto.*;
-//
-//public class MasterData {
-//
-//	public static SellerDto getUserDto() {
-//		SellerDto user = new SellerDto();
-////		user.setUserId(1L);
-////		user.setName("Name");
-////		user.setEmail("name@mail.com");
-////		user.setAge(22);
-////		user.setGender("Male");
-////		user.setPhoneNumber(1234567890L);
-////		user.setCity("Mumbai");
-////		user.setCountry("India");
-////		return user;
-//
-//	}
-//
-//	public static List<SellerDto> getUserDtoList() {
+package com.wells.qart.eAuction.testutils;
+import java.util.ArrayList;
+import java.util.List;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wells.qart.eAuction.dto.*;
+public class MasterData {
+	public static SellerDto getSellerDto() {
+		SellerDto seller = new SellerDto();
+		seller.setSellerId(1L);
+		seller.setFirstName("Name");
+		seller.setEmail("name@mail.com");
+		seller.setPin(222222);
+		seller.setPhoneNumber(1234567890L);
+		seller.setCity("Mumbai");
+		seller.setState("AP");
+		return seller;
+	}
+    //public static List<SellerDto> getUserDtoList() {
 //		List<SellerDto> users = new ArrayList<>();
 //		SellerDto user = new SellerDto();
 ////		user.setUserId(1L);
@@ -48,129 +40,13 @@
 //		return users;
 //	}
 //
-//	public static MatchDto getMatchDto() {
-//		MatchDto matchDto = new MatchDto();
-//		matchDto.setId(1L);
-//		matchDto.setUserId(2L);
-//		matchDto.setMatchedUserId(1L);
-//		return matchDto;
-//	}
-//
-//	public static List<MatchDto> getMatchDtoList() {
-//		List<MatchDto> matches = new ArrayList<>();
-//		MatchDto matchDto = new MatchDto();
-//		matchDto.setId(1L);
-//		matchDto.setUserId(2L);
-//		matchDto.setMatchedUserId(1L);
-//		matches.add(matchDto);
-//		matchDto = new MatchDto();
-//		matchDto.setId(2L);
-//		matchDto.setUserId(2L);
-//		matchDto.setMatchedUserId(1L);
-//		matches.add(matchDto);
-//		return matches;
-//	}
-//
-//	public static LikeDto getLikeDto() {
-//		LikeDto likeDto = new LikeDto();
-//		likeDto.setId(1L);
-//		likeDto.setUserId(2l);
-//		likeDto.setLikedUserId(3L);
-//		return likeDto;
-//	}
-//
-//	public static List<LikeDto> getLikeDtoList() {
-//		List<LikeDto> likes = new ArrayList<>();
-//		LikeDto likeDto = new LikeDto();
-//		likeDto.setId(1L);
-//		likeDto.setUserId(2l);
-//		likeDto.setLikedUserId(3L);
-//		likes.add(likeDto);
-//		likeDto = new LikeDto();
-//		likeDto.setId(2L);
-//		likeDto.setUserId(2L);
-//		likeDto.setLikedUserId(3L);
-//		likes.add(likeDto);
-//		return likes;
-//	}
-//
-//	public static DislikeDto getDislikeDto() {
-//		DislikeDto dislikeDto = new DislikeDto();
-//		dislikeDto.setId(1L);
-//		dislikeDto.setUserId(2L);
-//		dislikeDto.setDislikedUserId(3L);
-//		return dislikeDto;
-//	}
-//
-//	public static List<DislikeDto> getDislikeDtoList() {
-//		List<DislikeDto> dislikes = new ArrayList<>();
-//		DislikeDto dislikeDto = new DislikeDto();
-//		dislikeDto.setId(1L);
-//		dislikeDto.setUserId(2l);
-//		dislikeDto.setDislikedUserId(1L);
-//		dislikes.add(dislikeDto);
-//		dislikeDto = new DislikeDto();
-//		dislikeDto.setId(2L);
-//		dislikeDto.setUserId(1L);
-//		dislikeDto.setDislikedUserId(2L);
-//		dislikes.add(dislikeDto);
-//		return dislikes;
-//	}
-//
-//	public static InterestsDto getInterestsDto() {
-//
-//		InterestsDto interestDto = new InterestsDto();
-//		interestDto.setInterestId(1L);
-//		interestDto.setUserId(2L);
-//		List<String> hobbies = new ArrayList<>();
-//		hobbies.add("Playing Cricket");
-//		hobbies.add("Reading Books");
-//		hobbies.add("Travelling");
-//		interestDto.setHobbies(hobbies);
-//		interestDto.setInterestedIn("To Talk");
-//		interestDto.setNotInterestedIn("Getting up early in the morning");
-//		interestDto.setProfileUrl("www.abc.com");
-//		interestDto.setAbout("I am a Simple man");
-//		return interestDto;
-//	}
-//
-//	public static List<InterestsDto> getInterestsDtoList() {
-//		List<InterestsDto> interests = new ArrayList<>();
-//		InterestsDto interestDto = new InterestsDto();
-//		interestDto.setInterestId(1L);
-//		interestDto.setUserId(2L);
-//		List<String> hobbies = new ArrayList<>();
-//		hobbies.add("Playing Cricket");
-//		hobbies.add("Reading Books");
-//		hobbies.add("Travelling");
-//		interestDto.setHobbies(hobbies);
-//		interestDto.setInterestedIn("To Talk");
-//		interestDto.setNotInterestedIn("Getting up early in the morning");
-//		interestDto.setProfileUrl("www.abc.com");
-//		interestDto.setAbout("I am a Simple man");
-//		interests.add(interestDto);
-//		interestDto = new InterestsDto();
-//		interestDto.setInterestId(2L);
-//		interestDto.setUserId(1L);
-//		hobbies = new ArrayList<>();
-//		hobbies.add("Sleeping");
-//		hobbies.add("Playing Games");
-//		interestDto.setHobbies(hobbies);
-//		interestDto.setInterestedIn("Riding the Bikes");
-//		interestDto.setNotInterestedIn("Sleeping early");
-//		interestDto.setProfileUrl("www.example.com");
-//		interestDto.setAbout("Have passion for life");
-//		interests.add(interestDto);
-//		return interests;
-//	}
-//
-//	public static String asJsonString(final Object obj) {
-//		try {
-//			final ObjectMapper mapper = new ObjectMapper();
-//			final String jsonContent = mapper.writeValueAsString(obj);
-//			return jsonContent;
-//		} catch (Exception e) {
-//			throw new RuntimeException(e);
-//		}
-//	}
-//}
+	public static String asJsonString(final Object obj) {
+		try {
+			final ObjectMapper mapper = new ObjectMapper();
+			final String jsonContent = mapper.writeValueAsString(obj);
+			return jsonContent;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+}
