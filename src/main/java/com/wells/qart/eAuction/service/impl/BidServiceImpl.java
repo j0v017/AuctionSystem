@@ -1,6 +1,7 @@
 package com.wells.qart.eAuction.service.impl;
 
 import com.wells.qart.eAuction.dto.BidDto;
+import com.wells.qart.eAuction.dto.ProductDto;
 import com.wells.qart.eAuction.entity.Bid;
 import com.wells.qart.eAuction.entity.Product;
 import com.wells.qart.eAuction.exceptions.CannotDeleteProductException;
@@ -73,7 +74,11 @@ public class BidServiceImpl implements BidService {
 		if(bids.isEmpty()){
 			throw new InvalidDataException("No Bids for given email nd product id");
 		}
+
 		Bid bid = bids.get(0);
+		ProductDto productDto=new ProductDto();
+		if(productRepository.getById(productId).getBidEndDate().compareTo(LocalDate.now())<0)
+			throw new InvalidDataException("It is past Bid End Date of the Product");
 		bid.setBidAmount(newBidAmount);
 		bidRepository.save(bid);
 		return true;

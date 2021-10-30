@@ -6,10 +6,12 @@ import com.wells.qart.eAuction.service.BidService;
 import com.wells.qart.eAuction.service.BuyerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/buyer")
@@ -31,7 +33,7 @@ public class BuyerRestController {
 	}
 
 	@PutMapping("/update-bid/{productId}/{buyerEmailld}/{newBidAmount}")
-	public ResponseEntity<Boolean> updateBid(@PathVariable Long productId,@PathVariable String buyerEmailld,
+	public ResponseEntity<Boolean> updateBid(@PathVariable Long productId, @PathVariable String buyerEmailld,
 											 @PathVariable Double newBidAmount) {
 
 		boolean ret = bidService.updateBid(productId,buyerEmailld,newBidAmount);

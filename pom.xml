@@ -12,8 +12,8 @@
 	<groupId>com.wells.qart.eAuction</groupId>
 	<artifactId>eAuction</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>DatingApplication</name>
-	<description>Dating Application</description>
+	<name>eAuction</name>
+	<description>eAuction</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

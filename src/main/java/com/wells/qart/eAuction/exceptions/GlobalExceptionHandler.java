@@ -10,33 +10,6 @@ import com.wells.qart.eAuction.model.exception.ExceptionResponse;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-	@ExceptionHandler(InterestsNotFoundException.class)
-	public ResponseEntity<ExceptionResponse> handler(InterestsNotFoundException ex) {
-		ExceptionResponse exception = new ExceptionResponse(ex.getMessage(), System.currentTimeMillis(),
-				HttpStatus.BAD_REQUEST.value());
-		ResponseEntity<ExceptionResponse> response = new ResponseEntity<ExceptionResponse>(exception,
-				HttpStatus.BAD_REQUEST);
-		return response;
-	}
-
-	@ExceptionHandler(UserNotFoundException.class)
-	public ResponseEntity<ExceptionResponse> handler(UserNotFoundException ex) {
-		ExceptionResponse exception = new ExceptionResponse(ex.getMessage(), System.currentTimeMillis(),
-				HttpStatus.BAD_REQUEST.value());
-		ResponseEntity<ExceptionResponse> response = new ResponseEntity<ExceptionResponse>(exception,
-				HttpStatus.BAD_REQUEST);
-		return response;
-	}
-
-	@ExceptionHandler(MatchNotFoundException.class)
-	public ResponseEntity<ExceptionResponse> handler(MatchNotFoundException ex) {
-		ExceptionResponse exception = new ExceptionResponse(ex.getMessage(), System.currentTimeMillis(),
-				HttpStatus.BAD_REQUEST.value());
-		ResponseEntity<ExceptionResponse> response = new ResponseEntity<ExceptionResponse>(exception,
-				HttpStatus.BAD_REQUEST);
-		return response;
-	}
-
 	@ExceptionHandler(InvalidDataException.class)
 	public ResponseEntity<ExceptionResponse> handler(InvalidDataException ex) {
 		ExceptionResponse exception = new ExceptionResponse(ex.getMessage(), System.currentTimeMillis(),
@@ -53,5 +26,15 @@ public class GlobalExceptionHandler {
 		ResponseEntity<ExceptionResponse> response = new ResponseEntity<ExceptionResponse>(exception,
 				HttpStatus.BAD_REQUEST);
 		return response;
+	}
+
+	@ExceptionHandler(DuplicateBidException.class)
+	public ResponseEntity<ExceptionResponse> handler(DuplicateBidException ex){
+		ExceptionResponse exception = new ExceptionResponse(ex.getMessage(), System.currentTimeMillis(),
+				HttpStatus.BAD_REQUEST.value());
+		ResponseEntity<ExceptionResponse> response = new ResponseEntity<ExceptionResponse>(exception,
+				HttpStatus.BAD_REQUEST);
+		return response;
+
 	}
 }
