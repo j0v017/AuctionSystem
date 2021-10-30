@@ -45,4 +45,13 @@ public class GlobalExceptionHandler {
 				HttpStatus.BAD_REQUEST);
 		return response;
 	}
+
+	@ExceptionHandler(CannotDeleteProductException.class)
+	public ResponseEntity<ExceptionResponse> handler(CannotDeleteProductException ex) {
+		ExceptionResponse exception = new ExceptionResponse(ex.getMessage(), System.currentTimeMillis(),
+				HttpStatus.BAD_REQUEST.value());
+		ResponseEntity<ExceptionResponse> response = new ResponseEntity<ExceptionResponse>(exception,
+				HttpStatus.BAD_REQUEST);
+		return response;
+	}
 }
