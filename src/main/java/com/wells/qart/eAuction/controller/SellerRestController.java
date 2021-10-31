@@ -34,13 +34,14 @@ public class SellerRestController {
 			throw new InvalidDataException("Product data is invalid");
 		}
 		productService.addProduct(productDto);
-		productService.addProduct(productDto);
 		return ResponseEntity.ok(productDto);
 	}
 
 	@DeleteMapping("/delete/{productId}")
 	public ResponseEntity<Boolean> deleteProduct(@PathVariable Long productId) {
-		productService.deleteProduct(productId);
+
+			productService.deleteProduct(productId);
+
 		return ResponseEntity.ok(true);
 	}
 

@@ -1,8 +1,10 @@
 package com.wells.qart.eAuction.testutils;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.wells.qart.eAuction.dto.*;
 import com.wells.qart.eAuction.entity.Buyer;
 
@@ -85,6 +87,9 @@ public class MasterData {
 	public static String asJsonString(final Object obj) {
 		try {
 			final ObjectMapper mapper = new ObjectMapper();
+			mapper.registerModule(new JavaTimeModule());
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			mapper.setDateFormat(df);
 			final String jsonContent = mapper.writeValueAsString(obj);
 			return jsonContent;
 		} catch (Exception e) {

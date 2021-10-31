@@ -6,6 +6,7 @@ import com.wells.qart.eAuction.entity.Buyer;
 import com.wells.qart.eAuction.service.BidService;
 import com.wells.qart.eAuction.service.ProductService;
 import com.wells.qart.eAuction.service.SellerService;
+import com.wells.qart.eAuction.testutils.MasterData;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
@@ -52,20 +51,20 @@ class SellerRestControllerTest {
 
         // Run the test
         final MockHttpServletResponse response = mockMvc.perform(post("/seller/add-product")
-                        .content("content").contentType(MediaType.APPLICATION_JSON)
+                        .content(MasterData.asJsonString(productDto)).contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
 
         // Verify the results
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-        assertThat(response.getContentAsString()).isEqualTo("expectedResponse");
+        assertThat(response.getContentAsString()).isEqualTo(MasterData.asJsonString(productDto));
         verify(mockProductService).addProduct(new ProductDto(4L, "produ", new BigDecimal("99999"), "short", "detailedDescription", LocalDate.of(2021, 11, 1), "ornament"));
     }
 
     @Test
     void testDeleteProduct() throws Exception {
         // Setup
-        when(mockProductService.deleteProduct(0L)).thenReturn(false);
+        when(mockProductService.deleteProduct(0L)).thenReturn(true);
 
         // Run the test
         final MockHttpServletResponse response = mockMvc.perform(delete("/seller/delete/{productId}", 0)
@@ -74,7 +73,7 @@ class SellerRestControllerTest {
 
         // Verify the results
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-        assertThat(response.getContentAsString()).isEqualTo("expectedResponse");
+        assertThat(response.getContentAsString()).isEqualTo("true");
         verify(mockProductService).deleteProduct(0L);
     }
 
@@ -83,7 +82,8 @@ class SellerRestControllerTest {
         // Setup
 
         // Configure BidService.getAllBidsOnProductById(...).
-        final List<Bid> bids = List.of(new Bid(0L, 0.0, 0L, new Buyer(0L, "firstName", "lastName", 0L, 0L, "address", "email", "city", "state", Set.of())));
+        final List<Bid> bids = new ArrayList<Bid>();
+        bids.add(new Bid(0L, 0.0, 0L, new Buyer(0L, "firstName", "lastName", 0L, 0L, "address", "email", "city", "state", new HashSet<>())));
         when(mockBidService.getAllBidsOnProductById(0L)).thenReturn(bids);
 
         // Run the test
@@ -93,7 +93,7 @@ class SellerRestControllerTest {
 
         // Verify the results
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-        assertThat(response.getContentAsString()).isEqualTo("expectedResponse");
+        assertThat(response.getContentAsString()).isEqualTo(MasterData.asJsonString(bids));
     }
 
     @Test
@@ -116,7 +116,8 @@ class SellerRestControllerTest {
         // Setup
 
         // Configure ProductService.getAllProducts(...).
-        final List<ProductDto> productDtos = List.of(new ProductDto(1L, "productName", new BigDecimal("0.00"), "shortDescription", "detailedDescription", LocalDate.of(2020, 1, 1), "category"));
+        final List<ProductDto> productDtos = new ArrayList<>();
+        productDtos.add(new ProductDto(1L, "productName", new BigDecimal("0.00"), "shortDescription", "detailedDescription", LocalDate.of(2020, 1, 1), "category"));
         when(mockProductService.getAllProducts()).thenReturn(productDtos);
 
         // Run the test
