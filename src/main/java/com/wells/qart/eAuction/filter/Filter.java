@@ -9,7 +9,7 @@ public class Filter {
 	private ArrayList<?> values = new ArrayList<>();
 
 	public enum FilterType {
-		AGE, CITY, COUNTRY, GENDER;
+		AGE, CITY, COUNTRY, GENDER
 	}
 
 	public Filter() {

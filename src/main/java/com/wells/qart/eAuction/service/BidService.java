@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface BidService {	
 
-	public BidDto placeBid(BidDto bidDto);
-	public boolean updateBid(Long productId, String buyerEmailld, Double newBidAmount);
-	public List<Bid> getAllBidsOnProductById(Long productId);
+	BidDto placeBid(BidDto bidDto);
+	boolean updateBid(Long productId, String buyerEmailld, Double newBidAmount);
+	List<Bid> getAllBidsOnProductById(Long productId);
 
 }

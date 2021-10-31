@@ -1,12 +1,15 @@
 package com.wells.qart.eAuction.testutils;
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.wells.qart.eAuction.dto.*;
-import com.wells.qart.eAuction.entity.Buyer;
+import com.wells.qart.eAuction.dto.BidDto;
+import com.wells.qart.eAuction.dto.BuyerDto;
+import com.wells.qart.eAuction.dto.ProductDto;
+import com.wells.qart.eAuction.dto.SellerDto;
+
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 public class MasterData {
 	public static SellerDto getSellerDto() {
@@ -51,15 +54,16 @@ public class MasterData {
 		return buyer;
 	}
 
-	public static BidDto getBidDto(Buyer buyer) {
+	public static BidDto getBidDto() {
 		BidDto bid = new BidDto();
 		bid.setBidAmount(9999.99);
 		bid.setProductId(1L);
 		bid.setId(1L);
-		bid.setBuyer(buyer);
+		//bid.setBuyer();
 		return bid;
 	}
-    //public static List<SellerDto> getUserDtoList() {
+
+	//public static List<SellerDto> getUserDtoList() {
 //		List<SellerDto> users = new ArrayList<>();
 //		SellerDto user = new SellerDto();
 ////		user.setUserId(1L);

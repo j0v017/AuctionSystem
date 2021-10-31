@@ -5,16 +5,16 @@ import com.wells.qart.eAuction.dto.SellerDto;
 import java.util.List;
 
 public interface SellerService {
-	public SellerDto addProduct(SellerDto product);
+	SellerDto addProduct(SellerDto product);
 
-	public SellerDto registerSeller(SellerDto sellerDto);
+	SellerDto registerSeller(SellerDto sellerDto);
 
-	public SellerDto updateSeller(SellerDto sellerDto);
+	SellerDto updateSeller(SellerDto sellerDto);
 
-	public Boolean deleteSeller(Long sellerId);
+	Boolean deleteSeller(Long sellerId);
 
-	public SellerDto getSellerById(Long sellerId);
+	SellerDto getSellerById(Long sellerId);
 
-	public List<SellerDto> getAllSellers();
+	List<SellerDto> getAllSellers();
 
 }

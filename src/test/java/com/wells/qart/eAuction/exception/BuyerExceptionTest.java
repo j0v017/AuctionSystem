@@ -1,9 +1,8 @@
 package com.wells.qart.eAuction.exception;
 
-import com.wells.qart.eAuction.controller.SellerRestController;
-import com.wells.qart.eAuction.dto.ProductDto;
-import com.wells.qart.eAuction.service.ProductService;
-import com.wells.qart.eAuction.service.SellerService;
+import com.wells.qart.eAuction.controller.BuyerRestController;
+import com.wells.qart.eAuction.dto.BidDto;
+import com.wells.qart.eAuction.service.BidService;
 import com.wells.qart.eAuction.testutils.MasterData;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
@@ -21,15 +20,14 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static com.wells.qart.eAuction.testutils.TestUtils.*;
 import static org.mockito.Mockito.when;
 
-@WebMvcTest(SellerRestController.class)
+@WebMvcTest(BuyerRestController.class)
 @AutoConfigureMockMvc
-public class SellerExceptionTest {
+public class BuyerExceptionTest {
     @Autowired
     private MockMvc mockMvc;
+
     @MockBean
-    private SellerService sellerService;
-    @MockBean
-    private ProductService productService;
+    private BidService bidService;
 
     @AfterAll
     public static void afterAll() {
@@ -37,28 +35,34 @@ public class SellerExceptionTest {
     }
 
     @Test
-    public void testAddProductInvalidDataException() throws Exception {
-        ProductDto productDto = MasterData.getProductDto();
-        ProductDto savedProductDto = MasterData.getProductDto();
-        savedProductDto.setProductId(1L);
-        productDto.setProductName("abcdf");
-        when(this.productService.addProduct(productDto)).thenReturn(savedProductDto);
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/add-product").content(MasterData.asJsonString(productDto))
+    public void testBuyerInvalidDataException() throws Exception {
+        BidDto bidDto = MasterData.getBidDto();
+        BidDto savedbidDto = MasterData.getBidDto();
+        savedbidDto.setId(1L);
+
+        bidDto.setId(1L);
+
+        when(this.bidService.placeBid(bidDto)).thenReturn(savedbidDto);
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/bids").content(MasterData.asJsonString(bidDto))
                 .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON);
+
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
         wellsAssert(currentTest(),
                 (result.getResponse().getStatus() == HttpStatus.BAD_REQUEST.value() ? "true" : "false"),
                 exceptionTestFile);
+
     }
-    //@Test
-    //public void testUpdateUserInvalidDataException() throws Exception {
-//		SellerDto sellerDto = MasterData.getUserDto();
-//		SellerDto savedSellerDto = MasterData.getUserDto();
-//		savedSellerDto.setUserId(1L);
+
+//	@Test
+//	public void testUpdatebidInvalidDataException() throws Exception {
+//		bidDto bidDto = MasterData.getbidDto();
+//		bidDto savedbidDto = MasterData.getbidDto();
+//		savedbidDto.setbidId(1L);
 //
-//		sellerDto.setName("ab");
-//		when(this.sellerService.updateUser(sellerDto)).thenReturn(savedSellerDto);
-//		RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/users").content(MasterData.asJsonString(sellerDto))
+//		bidDto.setName("ab");
+//		when(this.bidService.updatebid(bidDto)).thenReturn(savedbidDto);
+//		RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/bids").content(MasterData.asJsonString(bidDto))
 //				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON);
 //
 //		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
@@ -69,12 +73,12 @@ public class SellerExceptionTest {
 //	}
 //
 //	@Test
-//	public void testDeleteUserNotFoundException() throws Exception {
-//		ExceptionResponse exResponse = new ExceptionResponse("Seller with Id - 2 not Found!", System.currentTimeMillis(),
+//	public void testDeletebidNotFoundException() throws Exception {
+//		ExceptionResponse exResponse = new ExceptionResponse("bid with Id - 2 not Found!", System.currentTimeMillis(),
 //				HttpStatus.NOT_FOUND.value());
 //
-//		when(this.sellerService.deleteUser(2L)).thenThrow(new UserNotFoundException("Seller with Id - 2 not Found!"));
-//		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/users/2")
+//		when(this.bidService.deleteBid(2L)).thenThrow(new bidNotFoundException("bid with Id - 2 not Found!"));
+//		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/bids/2")
 //				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON);
 //
 //		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
@@ -83,5 +87,5 @@ public class SellerExceptionTest {
 //				exceptionTestFile);
 //
 //	}
-//
+
 }

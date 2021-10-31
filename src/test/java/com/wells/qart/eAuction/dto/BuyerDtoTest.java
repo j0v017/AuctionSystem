@@ -14,23 +14,9 @@ class BuyerDtoTest {
         buyerDtoUnderTest = new BuyerDto();
     }
 
-    @Test
-    void testEquals() {
-        assertThat(buyerDtoUnderTest.equals("o")).isTrue();
-    }
-
-    @Test
-    void testHashCode() {
-        assertThat(buyerDtoUnderTest.hashCode()).isEqualTo(0);
-    }
 
     @Test
     void testToString() {
-        assertThat(buyerDtoUnderTest.toString()).isEqualTo("result");
-    }
-
-    @Test
-    void testCanEqual() {
-        assertThat(buyerDtoUnderTest.canEqual("other")).isTrue();
+        assertThat(buyerDtoUnderTest.toString()).isEqualTo("BuyerDto(buyerId=null, firstName=null, lastName=null, pin=null, phoneNumber=null, address=null, email=null, city=null, state=null)");
     }
 }

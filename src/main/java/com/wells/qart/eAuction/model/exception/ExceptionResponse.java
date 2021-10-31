@@ -70,11 +70,8 @@ public class ExceptionResponse {
 		} else if (!status.equals(other.status))
 			return false;
 		if (timeStamp == null) {
-			if (other.timeStamp != null)
-				return false;
-		} else if (!timeStamp.equals(other.timeStamp))
-			return false;
-		return true;
+			return other.timeStamp == null;
+		} else return timeStamp.equals(other.timeStamp);
 	}
 
 }

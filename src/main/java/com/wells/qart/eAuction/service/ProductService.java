@@ -5,12 +5,12 @@ import com.wells.qart.eAuction.dto.ProductDto;
 import java.util.List;
 
 public interface ProductService {
-    public ProductDto addProduct(ProductDto productDto);
-    public ProductDto getProductById(Long productId);
-    public List<ProductDto> getAllProducts();
+    ProductDto addProduct(ProductDto productDto);
+    ProductDto getProductById(Long productId);
+    List<ProductDto> getAllProducts();
     boolean deleteProduct(Long productId);
 
 
-    public ProductDto enlistBidsForProduct(ProductDto product);
-    public ProductDto putProductOnAuction(ProductDto product);
+    ProductDto enlistBidsForProduct(ProductDto product);
+    ProductDto putProductOnAuction(ProductDto product);
 }
