@@ -47,7 +47,7 @@ public class TestUtils {
 		}
 		
 		
-		public static void yakshaAssert(String testName, Object result, File file) throws IOException {
+		public static void wellsAssert(String testName, Object result, File file) throws IOException {
 			total++;
 			String[] r = testName.split("(?=\\p{Upper})");
 			System.out.print("\n"  + BLUE_BOLD_BRIGHT + "TEST CASE => ");

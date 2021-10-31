@@ -2,7 +2,7 @@ package com.wells.qart.eAuction.functional;
 import static com.wells.qart.eAuction.testutils.TestUtils.businessTestFile;
 import static com.wells.qart.eAuction.testutils.TestUtils.currentTest;
 import static com.wells.qart.eAuction.testutils.TestUtils.testReport;
-import static com.wells.qart.eAuction.testutils.TestUtils.yakshaAssert;
+//import static com.wells.qart.eAuction.testutils.TestUtils.yakshaAssert;
 import static org.mockito.Mockito.when;
 import java.util.List;
 import com.wells.qart.eAuction.dto.SellerDto;

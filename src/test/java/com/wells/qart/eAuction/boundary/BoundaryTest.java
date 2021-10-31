@@ -36,7 +36,7 @@ public class BoundaryTest {
         sellerDto.setFirstName("");
 //        sellerDto.setLastName("xyz");
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.yakshaAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
+        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class BoundaryTest {
         SellerDto sellerDto = MasterData.getSellerDto();
         sellerDto.setFirstName("Abcd");
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.yakshaAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
+        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
     }
 
     @Test
@@ -56,7 +56,7 @@ public class BoundaryTest {
         }
         sellerDto.setFirstName(name);
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.yakshaAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
+        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
     }
 
     @Test
@@ -64,7 +64,7 @@ public class BoundaryTest {
         SellerDto sellerDto = MasterData.getSellerDto();
         sellerDto.setPhoneNumber(null);
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.yakshaAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
+        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
     }
 
     @Test
@@ -72,7 +72,7 @@ public class BoundaryTest {
         SellerDto sellerDto = MasterData.getSellerDto();
         sellerDto.setPhoneNumber(12345L);
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.yakshaAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
+        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
     }
 
     @Test
@@ -81,14 +81,14 @@ public class BoundaryTest {
 
         sellerDto.setPhoneNumber(123456789012L);
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.yakshaAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
+        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
     }
     @Test
     public void testEmailNotNull() throws Exception {
         SellerDto sellerDto = MasterData.getSellerDto();
         sellerDto.setEmail("");
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.yakshaAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
+        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
     }
 
     @Test
@@ -96,7 +96,7 @@ public class BoundaryTest {
         SellerDto sellerDto = MasterData.getSellerDto();
         sellerDto.setEmail("Abcd");
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.yakshaAssert(TestUtils.currentTest(), !violations.isEmpty() ? true : false, TestUtils.boundaryTestFile);
+        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
     }
 
     @Test
@@ -108,7 +108,7 @@ public class BoundaryTest {
         }
         sellerDto.setEmail(name);
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.yakshaAssert(TestUtils.currentTest(), !violations.isEmpty() ? true : false, TestUtils.boundaryTestFile);
+        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
     }
 
     @Test
@@ -116,6 +116,6 @@ public class BoundaryTest {
         SellerDto sellerDto = MasterData.getSellerDto();
         sellerDto.setEmail("abcde");
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.yakshaAssert(TestUtils.currentTest(), !violations.isEmpty() ? true : false, TestUtils.boundaryTestFile);
+        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
     }
 }

@@ -28,7 +28,6 @@ public class ProductDto {
     private Seller seller;
     @Pattern(regexp = "Painting|Sculptor|Ornament", flags = Pattern.Flag.CASE_INSENSITIVE)
     private String category;
-    //List<String> category=List.of("Painting", "Sculptor", "Ornament");
 
     public ProductDto(){}
 
