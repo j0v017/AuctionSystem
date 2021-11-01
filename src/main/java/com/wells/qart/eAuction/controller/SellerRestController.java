@@ -5,7 +5,6 @@ import com.wells.qart.eAuction.entity.Bid;
 import com.wells.qart.eAuction.exceptions.InvalidDataException;
 import com.wells.qart.eAuction.service.BidService;
 import com.wells.qart.eAuction.service.ProductService;
-import com.wells.qart.eAuction.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -17,9 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/seller")
 public class SellerRestController {
-
-	@Autowired
-	private SellerService sellerService;
 
 	@Autowired
 	ProductService productService;

@@ -10,13 +10,14 @@ import com.wells.qart.eAuction.dto.SellerDto;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MasterData {
 	public static SellerDto getSellerDto() {
 		SellerDto seller = new SellerDto();
 		seller.setSellerId(1L);
 		seller.setFirstName("Name");
-
 		seller.setEmail("name@mail.com");
 		seller.setPin(222222);
 		seller.setPhoneNumber(1234567890L);
@@ -29,10 +30,7 @@ public class MasterData {
 		ProductDto product = new ProductDto();
 		product.setProductId(1L);
 		product.setProductName("Name");
-		//LocalDate date= LocalDate.parse("2011-11-11");
-
 		product.setBidEndDate(LocalDate.of(2022, 1, 1));
-
 		product.setCategory("ornament");
 		product.setShortDescription("short");
 		product.setDetailedDescription("detailed textual definition");
@@ -47,7 +45,7 @@ public class MasterData {
 		buyer.setFirstName("first");
 		buyer.setLastName("last");
 		buyer.setAddress("address");
-		buyer.setCity("Muzaffarpur");
+		buyer.setCity("Patna");
 		buyer.setState("Bihar");
 		buyer.setPhoneNumber(1234567890L);
 		buyer.setPin(888888L);
@@ -59,35 +57,45 @@ public class MasterData {
 		bid.setBidAmount(9999.99);
 		bid.setProductId(1L);
 		bid.setId(1L);
-		//bid.setBuyer();
 		return bid;
 	}
 
-	//public static List<SellerDto> getUserDtoList() {
-//		List<SellerDto> users = new ArrayList<>();
-//		SellerDto user = new SellerDto();
-////		user.setUserId(1L);
-////		user.setName("First");
-////		user.setEmail("first@mail.com");
-////		user.setAge(22);
-////		user.setGender("Male");
-////		user.setPhoneNumber(1234567890L);
-////		user.setCity("Mumbai");
-////		user.setCountry("India");
-////		users.add(user);
-////		user = new SellerDto();
-////		user.setUserId(2L);
-////		user.setName("Second");
-////		user.setEmail("second@mail.com");
-////		user.setAge(23);
-////		user.setGender("Female");
-////		user.setPhoneNumber(99994567890L);
-////		user.setCity("London");
-////		user.setCountry("England");
-////		users.add(user);
-//		return users;
-//	}
-//
+	public static List<ProductDto> getProductDtoList() {
+		List<ProductDto> products = new ArrayList<>();
+		ProductDto product = new ProductDto();
+		product.setProductId(1L);
+		product.setProductName("Rajesh");
+		product.setCategory("ornament");
+		product.setShortDescription("short");
+		product.setDetailedDescription("details are here");
+		product.setStartingPrice(new BigDecimal("9999.99"));
+		product.setBidEndDate(LocalDate.of(2022, 1, 1));
+		products.add(product);
+		product=new ProductDto();
+		product.setProductId(2L);
+		product.setProductName("Ratnesh");
+		product.setCategory("ornament");
+		product.setShortDescription("short2");
+		product.setDetailedDescription("details are here too");
+		product.setStartingPrice(new BigDecimal("999.99"));
+		product.setBidEndDate(LocalDate.of(2023, 1, 1));
+		products.add(product);
+		return products;
+	}
+	public static List<BidDto> getBidDtoList(){
+		List<BidDto> bids=new ArrayList<>();
+		BidDto bid=new BidDto();
+		bid.setId(1L);
+		bid.setBidAmount(999.99);
+		bid.setProductId(1L);
+		bids.add(bid);
+		bid=new BidDto();
+		bid.setId(2L);
+		bid.setBidAmount(99.99);
+		bid.setProductId(2L);
+		bids.add(bid);
+		return bids;
+	}
 	public static String asJsonString(final Object obj) {
 		try {
 			final ObjectMapper mapper = new ObjectMapper();

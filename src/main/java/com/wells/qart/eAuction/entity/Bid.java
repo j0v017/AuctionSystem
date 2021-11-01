@@ -24,5 +24,5 @@ public class Bid {
 	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	@JoinColumn(name="fk_buyer_id",referencedColumnName="buyerId")
 	private Buyer buyer;
-	
+
 }

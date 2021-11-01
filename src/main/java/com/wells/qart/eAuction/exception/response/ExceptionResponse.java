@@ -6,7 +6,6 @@ public class ExceptionResponse {
 	private Integer status;
 
 	public ExceptionResponse() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public ExceptionResponse(String message, Long timeStamp, Integer status) {

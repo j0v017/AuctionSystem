@@ -3,15 +3,14 @@ package com.wells.qart.eAuction.controller;
 import com.wells.qart.eAuction.dto.BidDto;
 import com.wells.qart.eAuction.exceptions.InvalidDataException;
 import com.wells.qart.eAuction.service.BidService;
-import com.wells.qart.eAuction.service.BuyerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
+
 
 @RestController
 @RequestMapping("/buyer")
@@ -20,8 +19,6 @@ public class BuyerRestController {
 	@Autowired
 	private BidService bidService;
 
-	@Autowired
-	private BuyerService buyerService;
 
 	@PostMapping("/place-bid")
 	public ResponseEntity<BidDto> addBid(@Valid @RequestBody BidDto bidDto, BindingResult result) {

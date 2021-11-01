@@ -46,8 +46,8 @@ class SellerRestControllerTest {
         // Setup
 
         // Configure ProductService.addProduct(...).
-        final ProductDto productDto = new ProductDto(4L, "produ", new BigDecimal("99999"), "short", "detailedDescription", LocalDate.of(2021, 11, 1), "ornament");
-        when(mockProductService.addProduct(new ProductDto(4L, "produ", new BigDecimal("99999"), "short", "detailedDescription", LocalDate.of(2021, 11, 1), "ornament"))).thenReturn(productDto);
+        final ProductDto productDto = new ProductDto(4L, "produ", new BigDecimal("99999"), "short", "detailedDescription", LocalDate.of(2021, 11, 20), "ornament");
+        when(mockProductService.addProduct(new ProductDto(4L, "produ", new BigDecimal("99999"), "short", "detailedDescription", LocalDate.of(2021, 11, 20), "ornament"))).thenReturn(productDto);
 
         // Run the test
         final MockHttpServletResponse response = mockMvc.perform(post("/seller/add-product")
@@ -58,7 +58,7 @@ class SellerRestControllerTest {
         // Verify the results
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.getContentAsString()).isEqualTo(MasterData.asJsonString(productDto));
-        verify(mockProductService).addProduct(new ProductDto(4L, "produ", new BigDecimal("99999"), "short", "detailedDescription", LocalDate.of(2021, 11, 1), "ornament"));
+        verify(mockProductService).addProduct(new ProductDto(4L, "produ", new BigDecimal("99999"), "short", "detailedDescription", LocalDate.of(2021, 11, 20), "ornament"));
     }
 
     @Test

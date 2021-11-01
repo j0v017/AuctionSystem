@@ -1,6 +1,5 @@
 package com.wells.qart.eAuction.dto;
 
-import com.wells.qart.eAuction.entity.Seller;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,7 +24,6 @@ public class ProductDto {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate bidEndDate;
 
-    private Seller seller;
     @Pattern(regexp = "Painting|Sculptor|Ornament", flags = Pattern.Flag.CASE_INSENSITIVE)
     private String category;
 
