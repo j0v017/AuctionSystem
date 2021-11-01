@@ -1,4 +1,5 @@
-    package com.wells.qart.eAuction.boundary;
+package com.wells.qart.eAuction.boundary;
+import java.time.LocalDate;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -11,9 +12,13 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 //import org.Test;
 //import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import static com.wells.qart.eAuction.testutils.TestUtils.*;
+
 @ExtendWith(SpringExtension.class)
 public class BoundaryTest {
     private static Validator validator;
@@ -34,9 +39,8 @@ public class BoundaryTest {
     public void testFirstNameNotNull() throws Exception {
         SellerDto sellerDto = MasterData.getSellerDto();
         sellerDto.setFirstName("");
-//        sellerDto.setLastName("xyz");
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
+        wellsAssert(currentTest(), !violations.isEmpty(), boundaryTestFile);
     }
 
     @Test
@@ -44,7 +48,7 @@ public class BoundaryTest {
         SellerDto sellerDto = MasterData.getSellerDto();
         sellerDto.setFirstName("Abcd");
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
+        wellsAssert(currentTest(), !violations.isEmpty(), boundaryTestFile);
     }
 
     @Test
@@ -56,39 +60,66 @@ public class BoundaryTest {
         }
         sellerDto.setFirstName(name);
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
+        wellsAssert(currentTest(), !violations.isEmpty(), boundaryTestFile);
+    }
+    @Test
+    public void testLastNameNotNull() throws Exception {
+        SellerDto sellerDto = MasterData.getSellerDto();
+        sellerDto.setLastName("");
+        Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
+        wellsAssert(currentTest(), !violations.isEmpty(), boundaryTestFile);
     }
 
     @Test
-    public void testUserMobileNotNull() throws Exception {
+    public void testLastNameMin3() throws Exception {
+        SellerDto sellerDto = MasterData.getSellerDto();
+        sellerDto.setLastName("Ab");
+        Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
+        wellsAssert(currentTest(), !violations.isEmpty(), boundaryTestFile);
+    }
+
+    @Test
+    public void testLastNameMax25() throws Exception {
+        SellerDto sellerDto = MasterData.getSellerDto();
+        String name = "";
+        for (int i = 0; i < 26; i++) {
+            name.concat("A");
+        }
+        sellerDto.setLastName(name);
+        Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
+        wellsAssert(currentTest(), !violations.isEmpty(), boundaryTestFile);
+    }
+
+    @Test
+    public void testMobileNotNull() throws Exception {
         SellerDto sellerDto = MasterData.getSellerDto();
         sellerDto.setPhoneNumber(null);
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
+        wellsAssert(currentTest(), !violations.isEmpty(), boundaryTestFile);
     }
 
     @Test
-    public void testUserMobileMinTen() throws Exception {
+    public void testMobileMinTen() throws Exception {
         SellerDto sellerDto = MasterData.getSellerDto();
         sellerDto.setPhoneNumber(12345L);
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
+        wellsAssert(currentTest(), !violations.isEmpty(), boundaryTestFile);
     }
 
     @Test
-    public void testUserMobileMaxTen() throws Exception {
+    public void testMobileMaxTen() throws Exception {
         SellerDto sellerDto = MasterData.getSellerDto();
 
         sellerDto.setPhoneNumber(123456789012L);
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
+        wellsAssert(currentTest(), !violations.isEmpty(), boundaryTestFile);
     }
     @Test
     public void testEmailNotNull() throws Exception {
         SellerDto sellerDto = MasterData.getSellerDto();
         sellerDto.setEmail("");
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
+        wellsAssert(currentTest(), !violations.isEmpty(), boundaryTestFile);
     }
 
     @Test
@@ -96,11 +127,11 @@ public class BoundaryTest {
         SellerDto sellerDto = MasterData.getSellerDto();
         sellerDto.setEmail("Abcd");
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
+        wellsAssert(currentTest(), !violations.isEmpty(), boundaryTestFile);
     }
 
     @Test
-    public void testUserEmailMaxThirty() throws Exception {
+    public void testEmailMaxThirty() throws Exception {
         SellerDto sellerDto = MasterData.getSellerDto();
         String name = "";
         for (int i = 0; i < 40; i++) {
@@ -108,14 +139,202 @@ public class BoundaryTest {
         }
         sellerDto.setEmail(name);
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
+        wellsAssert(currentTest(), !violations.isEmpty(), boundaryTestFile);
     }
 
     @Test
-    public void testUserEmailValidFormat() throws Exception {
+    public void testEmailValidFormat() throws Exception {
         SellerDto sellerDto = MasterData.getSellerDto();
         sellerDto.setEmail("abcde");
         Set<ConstraintViolation<SellerDto>> violations = validator.validate(sellerDto);
-        TestUtils.wellsAssert(TestUtils.currentTest(), !violations.isEmpty(), TestUtils.boundaryTestFile);
+        wellsAssert(currentTest(), !violations.isEmpty(), boundaryTestFile);
     }
+    @Test
+    public void testProductNameNotNull() throws Exception {
+        ProductDto productDto = MasterData.getProductDto();
+        productDto.setProductName(null);
+        Set<ConstraintViolation<ProductDto>> violations = validator.validate(productDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+    @Test
+    public void testProductNameMinFive() throws Exception {
+        ProductDto productDto = MasterData.getProductDto();
+        productDto.setProductName("Abyz");
+        Set<ConstraintViolation<ProductDto>> violations = validator.validate(productDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+    @Test
+    public void testProductNameMaxThirty() throws Exception {
+        ProductDto productDto = MasterData.getProductDto();
+        String name = "";
+        for (int i = 0; i < 31; i++) {
+            name.concat("A");
+        }
+        productDto.setProductName(name);
+        Set<ConstraintViolation<ProductDto>> violations = validator.validate(productDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+    @Test
+    public void testProductStartingPriceNotNull() throws Exception {
+        ProductDto productDto = MasterData.getProductDto();
+        productDto.setStartingPrice(null);
+        Set<ConstraintViolation<ProductDto>> violations = validator.validate(productDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+    @Test
+    public void testBidAmountNotNull() throws Exception {
+        BidDto productDto = MasterData.getBidDto();
+        productDto.setBidAmount(null);
+        Set<ConstraintViolation<BidDto>> violations = validator.validate(productDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+
+    @Test
+    public void testProductBidEndDateNotNull() throws Exception {
+        ProductDto productDto = MasterData.getProductDto();
+        productDto.setBidEndDate(null);
+        Set<ConstraintViolation<ProductDto>> violations = validator.validate(productDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+    @Test
+    public void testProductLastDateOfBiddingNotPastDate() throws Exception {
+        ProductDto productDto = MasterData.getProductDto();
+        productDto.setBidEndDate(LocalDate.of(2020, 10, 20));
+        Set<ConstraintViolation<ProductDto>> violations = validator.validate(productDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+    @Test
+    public void testProductCategoryNotNull() throws Exception {
+        ProductDto productDto = MasterData.getProductDto();
+        productDto.setCategory(null);
+        Set<ConstraintViolation<ProductDto>> violations = validator.validate(productDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+    @Test
+    public void testBuyerFirstNameNotNull() throws Exception {
+        BuyerDto customerDto = MasterData.getBuyerDto();
+        customerDto.setFirstName(null);
+        Set<ConstraintViolation<BuyerDto>> violations = validator.validate(customerDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+    @Test
+    public void testBuyerFirstNameMinFive() throws Exception {
+        BuyerDto customerDto = MasterData.getBuyerDto();
+        customerDto.setFirstName("Abyz");
+        Set<ConstraintViolation<BuyerDto>> violations = validator.validate(customerDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+    @Test
+    public void testBuyerFirstNameMaxThirty() throws Exception {
+        BuyerDto customerDto = MasterData.getBuyerDto();
+        String username = "";
+        for (int i = 0; i < 31; i++) {
+            username.concat("A");
+        }
+        customerDto.setFirstName(username);
+        Set<ConstraintViolation<BuyerDto>> violations = validator.validate(customerDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+    @Test
+    public void testBuyerLastNameNotNull() throws Exception {
+        BuyerDto customerDto = MasterData.getBuyerDto();
+        customerDto.setLastName(null);
+        Set<ConstraintViolation<BuyerDto>> violations = validator.validate(customerDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+    @Test
+    public void testBuyerLastNameMinThree() throws Exception {
+        BuyerDto customerDto = MasterData.getBuyerDto();
+        customerDto.setLastName("Ab");
+        Set<ConstraintViolation<BuyerDto>> violations = validator.validate(customerDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+    @Test
+    public void testBuyerLastNameMax25() throws Exception {
+        BuyerDto customerDto = MasterData.getBuyerDto();
+        String username = "";
+        for (int i = 0; i < 26; i++) {
+            username.concat("A");
+        }
+        customerDto.setLastName(username);
+        Set<ConstraintViolation<BuyerDto>> violations = validator.validate(customerDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+
+
+    @Test
+    public void testCustomerEmailNotNull() throws Exception {
+        BuyerDto customerDto = MasterData.getBuyerDto();
+        customerDto.setEmail(null);
+        Set<ConstraintViolation<BuyerDto>> violations = validator.validate(customerDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+    @Test
+    public void testCustomerEmailMinFive() throws Exception {
+        BuyerDto customerDto = MasterData.getBuyerDto();
+        customerDto.setEmail("Abyz");
+        Set<ConstraintViolation<BuyerDto>> violations = validator.validate(customerDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+    @Test
+    public void testCustomerEmailMaxThirty() throws Exception {
+        BuyerDto customerDto = MasterData.getBuyerDto();
+        String email = "";
+        for (int i = 0; i < 40; i++) {
+            email.concat("A");
+        }
+        customerDto.setEmail(email);
+        Set<ConstraintViolation<BuyerDto>> violations = validator.validate(customerDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+    @Test
+    public void testCustomerEmailValidFormat() throws Exception {
+        BuyerDto customerDto = MasterData.getBuyerDto();
+        customerDto.setEmail("abc");
+        Set<ConstraintViolation<BuyerDto>> violations = validator.validate(customerDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+    @Test
+    public void testCustomerPhoneNumberNotNull() throws Exception {
+        BuyerDto customerDto = MasterData.getBuyerDto();
+        customerDto.setPhoneNumber(null);
+        Set<ConstraintViolation<BuyerDto>> violations = validator.validate(customerDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+    @Test
+    public void testCustomerPhoneNumberMinTen() throws Exception {
+        BuyerDto customerDto = MasterData.getBuyerDto();
+        customerDto.setPhoneNumber(12345L);
+        Set<ConstraintViolation<BuyerDto>> violations = validator.validate(customerDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+    @Test
+    public void testcustomerPhoneNumberMaxTen() throws Exception {
+        BuyerDto customerDto = MasterData.getBuyerDto();
+        customerDto.setPhoneNumber(123456789012L);
+        Set<ConstraintViolation<BuyerDto>> violations = validator.validate(customerDto);
+        wellsAssert(currentTest(), !violations.isEmpty() ? true : false, boundaryTestFile);
+    }
+
+
+
 }
